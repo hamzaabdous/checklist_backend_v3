@@ -40,7 +40,7 @@ public class DamageType {
     private Department department;
 
     @JsonIgnoreProperties("damageType")
-    @JsonBackReference
+    //@JsonBackReference
 
     @OneToMany(mappedBy = "damageType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Damage> damages;

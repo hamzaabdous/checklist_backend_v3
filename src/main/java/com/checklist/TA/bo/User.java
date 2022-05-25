@@ -88,8 +88,8 @@ public class User implements UserDetails {
     @ManyToOne()
     private Function function;
 
-   @JsonIgnoreProperties("users")
-   @ManyToMany
+    @JsonIgnoreProperties("users")
+    @ManyToMany
     @JoinTable(name = "profileGroup_users",joinColumns = @JoinColumn(name = "id_user"),inverseJoinColumns = @JoinColumn(name = "id_profileGroup"))
     private List<ProfileGroup> profileGroups;
 

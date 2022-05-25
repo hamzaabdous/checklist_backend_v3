@@ -56,8 +56,8 @@ public class UserController {
         return returnredValue;
     }
 
-    @PostMapping("/delete/{id}")
-    public ReturnredValue Delete(@PathVariable("user") User user){
+    @PostMapping("/delete")
+    public ReturnredValue Delete(@RequestBody User user){
         userService.Delete(user);
         ReturnredValue returnredValue=new ReturnredValue("users_delete_200",user);
         return returnredValue;

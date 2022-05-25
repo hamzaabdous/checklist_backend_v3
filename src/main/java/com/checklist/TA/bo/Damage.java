@@ -58,7 +58,7 @@ public class Damage {
     private Equipment equipement;
 
     @JsonIgnoreProperties("damages")
-    @JsonManagedReference
+    //@JsonManagedReference
     @ManyToOne
     private DamageType damageType;
 
