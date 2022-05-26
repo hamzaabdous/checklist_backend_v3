@@ -22,8 +22,8 @@ public class DamageController {
     }
 
     @GetMapping("/")
-    public List<Damage> findAll(){
-        List<Damage> damages= damageService.findAll();
+    public List<Long> findAll(){
+        List<Long> damages= damageService.GetAllDamages();
         return damages;
     }
 

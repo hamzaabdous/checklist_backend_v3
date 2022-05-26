@@ -1,6 +1,7 @@
 package com.checklist.TA.bo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -29,16 +30,19 @@ public class Damage {
     @Column(name="status")
     private String status;
 
-   @JsonIgnoreProperties("damageDeclaration")
+  // @JsonIgnoreProperties("damageDeclaration")
+    @JsonIgnoreProperties(value = {"damageDeclaration"}, allowSetters = true)
     @ManyToOne
     private User userDeclaration;
 
 
-   @JsonIgnoreProperties("damageUserResolution")
+   //@JsonIgnoreProperties("damageUserResolution")
+   @JsonIgnoreProperties(value = {"damageUserResolution"}, allowSetters = true)
     @ManyToOne
     private User userResolution;
 
-    @JsonIgnoreProperties("damageUserClosed")
+   // @JsonIgnoreProperties("damageUserClosed")
+    @JsonIgnoreProperties(value = {"damageUserClosed"}, allowSetters = true)
     @ManyToOne
     private User userClosed;
 
@@ -58,7 +62,7 @@ public class Damage {
     private Equipment equipement;
 
     @JsonIgnoreProperties("damages")
-    //@JsonManagedReference
+   //@JsonManagedReference
     @ManyToOne
     private DamageType damageType;
 

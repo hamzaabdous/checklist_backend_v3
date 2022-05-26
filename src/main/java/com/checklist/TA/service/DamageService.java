@@ -14,4 +14,6 @@ public interface DamageService {
     public Optional<Damage>  UpdateDamage(Damage damage);
     public long countDamages();
     public List<Damage> FindDamageTypeByEquipmentID( Long idEquipment);
+    public  List<Long> GetAllDamages();
+
 }

@@ -1,6 +1,7 @@
 package com.checklist.TA.bo;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -40,8 +41,7 @@ public class DamageType {
     private Department department;
 
     @JsonIgnoreProperties("damageType")
-    //@JsonBackReference
-
+    @JsonBackReference
     @OneToMany(mappedBy = "damageType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Damage> damages;
 
