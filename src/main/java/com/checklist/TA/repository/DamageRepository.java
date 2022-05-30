@@ -12,6 +12,6 @@ import java.util.List;
 public interface DamageRepository extends JpaRepository<Damage,Long> {
     @Query(value = "select * from damages where equipement_id= :id",nativeQuery = true)
     List<Damage> FindDamageTypeByEquipmentID(@Param("id") Long idEquipment);
-    @Query(value = "select id from damages d",nativeQuery = true)
+    @Query(value = "select id,name from damages d",nativeQuery = true)
     List<Long> GetAllDamages();
 }

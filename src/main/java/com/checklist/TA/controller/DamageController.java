@@ -20,13 +20,23 @@ public class DamageController {
         return damageService.damageSave(damage);
 
     }
+    @PostMapping("/addList")
+    public List<Damage> add(@RequestBody List<Damage> damages){
+        //  Optional<UserDao> userCreated=userService.userSave(user);
+        return damageService.damageSaveList(damages);
+    }
 
     @GetMapping("/")
-    public List<Long> findAll(){
-        List<Long> damages= damageService.GetAllDamages();
+    public List<Damage> findAll(){
+        List<Damage> damages= damageService.findAll();
         return damages;
     }
 
+    @GetMapping("/getAllId")
+    public List<Long> GetAllDamages(){
+        List<Long> damages= damageService.GetAllDamages();
+        return damages;
+    }
     @PostMapping("/delete/{id}")
     public Optional<Damage> DeleteId(@PathVariable("id") Damage damage){
         return damageService.DeleteId(damage);

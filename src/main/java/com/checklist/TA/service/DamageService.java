@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface DamageService {
     public Optional<Damage> damageSave (Damage damage);
+    public List<Damage> damageSaveList (List<Damage>damages);
+
     public List<Damage> findAll();
     public Optional<Damage>  DeleteId(Damage damage);
     public Optional<Damage>  UpdateDamage(Damage damage);

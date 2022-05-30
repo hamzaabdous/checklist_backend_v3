@@ -23,6 +23,11 @@ public class DamageServiceUmpl implements DamageService {
     }
 
     @Override
+    public List<Damage> damageSaveList(List<Damage> damages) {
+        return damageRepository.saveAll(damages);
+    }
+
+    @Override
     public List<Damage> findAll() {
         return damageRepository.findAll();
     }
