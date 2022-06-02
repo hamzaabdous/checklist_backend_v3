@@ -1,10 +1,9 @@
 package com.checklist.TA.bo;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -56,17 +55,20 @@ public class Damage {
     @Column(name="update_date")
     private Date updateDate;
 
-   @JsonIgnoreProperties("damage")
+   //@JsonIgnoreProperties("damage")
+    @JsonIgnoreProperties(value = {"damage"}, allowSetters = true)
     @OneToOne
     @JoinColumn(name="equipement_id")
     private Equipment equipement;
 
-    @JsonIgnoreProperties("damages")
-   //@JsonManagedReference
     @ManyToOne
+    @JoinColumn(name = "damage_type_id")
+    //@JsonIgnoreProperties("damages")
+    @JsonIgnoreProperties(value = {"damages"}, allowSetters = true)
     private DamageType damageType;
 
     @OneToMany(mappedBy = "damage",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("damage")
+    //@JsonIgnoreProperties("damage")
+    @JsonIgnoreProperties(value = {"damage"}, allowSetters = true)
     private List<Picture> pictures;
 }

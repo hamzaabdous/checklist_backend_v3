@@ -1,7 +1,9 @@
 package com.checklist.TA.bo;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
@@ -18,6 +20,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Picture {
 
     @Id
@@ -29,6 +32,8 @@ public class Picture {
     @Column(name="filename")
     private String filename;
 
+    @Column(name="url")
+    private String url;
     @JsonIgnoreProperties("pictures")
     @ManyToOne
     private Damage damage;

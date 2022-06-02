@@ -23,10 +23,14 @@ public class DamageTypeController {
 
     @GetMapping("/")
     public List<DamageType> findAll(){
-        List<DamageType> damageTypes= damageTypeService.findAll();
-        return damageTypes;
+       // List<DamageType> damageTypes= damageTypeService.getAll();
+        return damageTypeService.findAll();
     }
-
+    @PostMapping("/getByProfile_group_id/{id}")
+    public List<DamageType> getDamage_typesByProfile_group_id(@PathVariable("id") Long id){
+        // List<DamageType> damageTypes= damageTypeService.getAll();
+        return damageTypeService.getDamage_typesByProfile_group_id(id);
+    }
     @PostMapping("/delete/{id}")
     public Optional<DamageType> DeleteId(@PathVariable("id") DamageType damageType){
         return damageTypeService.DeleteId(damageType);

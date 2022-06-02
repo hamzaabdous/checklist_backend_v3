@@ -1,9 +1,6 @@
 package com.checklist.TA.bo;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
@@ -33,15 +30,17 @@ public class DamageType {
     private String name;
 
     @JsonIgnoreProperties("damageTypes")
+    @JsonBackReference(value="damageTypes_profileGroup")
     @ManyToOne
     private ProfileGroup profileGroup;
 
     @JsonIgnoreProperties("damageTypes")
+    @JsonBackReference(value="damageTypes_department")
     @ManyToOne
     private Department department;
 
     @JsonIgnoreProperties("damageType")
-    @JsonBackReference
+    @JsonBackReference(value="damageTypes_damages")
     @OneToMany(mappedBy = "damageType",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Damage> damages;
 

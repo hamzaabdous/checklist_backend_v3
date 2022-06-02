@@ -28,6 +28,11 @@ public class DamageTypeServiceUmpl implements DamageTypeService {
     }
 
     @Override
+    public List<DamageType> getDamage_typesByProfile_group_id(Long id) {
+        return damageTypeRepository.getDamage_typesByProfile_group_id(id);
+    }
+
+    @Override
     public Optional<DamageType> DeleteId(DamageType damageType) {
         damageTypeRepository.deleteById(damageType.getId());
         return Optional.ofNullable(damageType);
