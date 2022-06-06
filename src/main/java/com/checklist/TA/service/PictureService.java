@@ -1,14 +1,16 @@
 package com.checklist.TA.service;
 
-import com.checklist.TA.bo.Picture;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
+import java.nio.file.Path;
+
+import java.util.stream.Stream;
 
 public interface PictureService {
-    public Optional<Picture> pictureSave (Picture picture);
-    public List<Picture> findAll();
-    public Optional<Picture>  DeleteId(Picture picture);
-    public Optional<Picture>  UpdatePicture(Picture picture);
-    public long countPictures();
+    public void init();
+    public void save(MultipartFile file);
+    public Resource load(String filename);
+    public void deleteAll();
+    public Stream<Path> loadAll();
 }

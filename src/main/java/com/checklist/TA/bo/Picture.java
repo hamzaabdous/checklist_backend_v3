@@ -18,22 +18,28 @@ import java.util.Date;
 @Data
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class Picture {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
 
-    @Column(name="filename")
-    private String filename;
+    @Column(name = "type")
+    private String type;
 
-    @Column(name="url")
-    private String url;
+    @Column(name = "image", unique = false, nullable = false, length = 100000)
+    private byte[] image;
+
+    @Column(name = "description")
+    private String description;
     @JsonIgnoreProperties("pictures")
     @ManyToOne
     private Damage damage;
@@ -41,5 +47,4 @@ public class Picture {
     @Nullable
     @Column(name="created_Date")
     private Date createdDate;
-
 }

@@ -1,43 +1,65 @@
 package com.checklist.TA.controller;
 
+import com.checklist.TA.bo.Damage;
 import com.checklist.TA.bo.Picture;
-import com.checklist.TA.service.PictureService;
+import com.checklist.TA.repository.PictureRepository;
+import com.checklist.TA.util.ImageUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.*;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/Picture")
 public class PictureController {
     @Autowired
-    private PictureService pictureService;
+    private PictureRepository pictureRepository;
 
-    @PostMapping("/add")
-    public Optional<Picture> add(@RequestBody Picture picture){
-        //  Optional<UserDao> userCreated=userService.userSave(user);
-        return pictureService.pictureSave(picture);
+    @PostMapping("/upload/image")
 
+    public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") MultipartFile file, @RequestParam("damage") String damage, @RequestParam("description") String description)
+            throws IOException {
+        System.out.println(description);
+        Date currentDate = new Date();
+        Damage dm = new Damage();
+        dm.setId(Long.parseLong(damage));
+        pictureRepository.save(Picture.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .image(ImageUtility.compressImage(file.getBytes())).description(description).damage(dm).createdDate(currentDate).build());
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ImageUploadResponse("Image uploaded successfully: " +
+                        file.getOriginalFilename()));
     }
 
-    @GetMapping("/")
-    public List<Picture> findAll(){
-        List<Picture> pictures= pictureService.findAll();
-        return pictures;
+    @GetMapping(path = {"/get/image/info/{name}"})
+    public Picture getImageDetails(@PathVariable("name") String name) throws IOException {
+
+        final Optional<Picture> dbImage = pictureRepository.findByName(name);
+
+        return Picture.builder()
+                .name(dbImage.get().getName())
+                .type(dbImage.get().getType())
+                .image(ImageUtility.decompressImage(dbImage.get().getImage())).build();
     }
 
-    @PostMapping("/delete/{id}")
-    public Optional<Picture> DeleteId(@PathVariable("id") Picture picture){
-        return pictureService.DeleteId(picture);
-    }
+    @GetMapping(path = {"/get/image/{name}"})
+    public ResponseEntity<byte[]> getImage(@PathVariable("name") String name) throws IOException {
 
-    @PutMapping("/update")
-    public Optional<Picture>  UpdatePicture(@RequestBody Picture picture){
-        return pictureService.UpdatePicture(picture);
-    }
+        final Optional<Picture> dbImage = pictureRepository.findByName(name);
 
-    @GetMapping("/count")
-    public Long countPictures(){
-        return pictureService.countPictures();
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.valueOf(dbImage.get().getType()))
+                .body(ImageUtility.decompressImage(dbImage.get().getImage()));
     }
 }
