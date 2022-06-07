@@ -26,8 +26,8 @@ public class EquipmentController {
         return equipments;
     }
 
-    @PostMapping("/delete/{id}")
-    public Optional<Equipment> DeleteId(@PathVariable("id") Equipment equipment){
+    @PostMapping("/delete")
+    public Optional<Equipment> DeleteId(@RequestBody Equipment equipment){
         return equipmentService.DeleteId(equipment);
     }
 

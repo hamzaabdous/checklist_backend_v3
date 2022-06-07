@@ -32,11 +32,8 @@ public class Picture {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "image", unique = false, nullable = false, length = 100000)
-    private byte[] image;
+    @Column(name = "url")
+    private String url;
 
     @Column(name = "description")
     private String description;
@@ -47,4 +44,7 @@ public class Picture {
     @Nullable
     @Column(name="created_Date")
     private Date createdDate;
+
+    public Picture(String filename, String url) {
+    }
 }

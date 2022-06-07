@@ -1,6 +1,7 @@
 package com.checklist.TA.service.umpl;
 
 import com.checklist.TA.bo.Picture;
+import com.checklist.TA.repository.DamageRepository;
 import com.checklist.TA.repository.PictureRepository;
 import com.checklist.TA.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class PictureServiceUmpl implements PictureService {
-    private final Path root = Path.of("pictures");
-
+    private final Path root = Path.of("uploads");
+    @Autowired
+    private PictureRepository pictureRepository;
     @Override
     public void init() {
         try {
@@ -34,6 +37,11 @@ public class PictureServiceUmpl implements PictureService {
     }
     @Override
     public void save(MultipartFile file) {
+       // Picture picture = new Picture();
+        //picture.setName(file.getName());
+       // picture.setDescription();
+
+      //  pictureRepository.save(file);
         try {
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
