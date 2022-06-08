@@ -48,7 +48,6 @@ public class UserController {
 
     }
 
-    @CrossOrigin
     @GetMapping("/")
     public ReturnredValue findAll(){
         List<User> users = userService.findAll();

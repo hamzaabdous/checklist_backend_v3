@@ -31,6 +31,15 @@ public class DamageTypeServiceUmpl implements DamageTypeService {
     public List<DamageType> getDamage_typesByProfile_group_id(Long id) {
         return damageTypeRepository.getDamage_typesByProfile_group_id(id);
     }
+    @Override
+    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentIN(Long profile_group_id, Long department_id, Long equipement_id) {
+        return damageTypeRepository.getAllByProfileGroupAndAndDepartmentAndEquipmentIN(profile_group_id,department_id,equipement_id);
+    }
+
+    @Override
+    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentNOT(Long profile_group_id, Long department_id, Long equipement_id) {
+        return damageTypeRepository.getAllByProfileGroupAndAndDepartmentAndEquipmentNOT(profile_group_id,department_id,equipement_id);
+    }
 
     @Override
     public Optional<DamageType> DeleteId(DamageType damageType) {

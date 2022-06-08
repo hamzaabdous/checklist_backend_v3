@@ -31,6 +31,14 @@ public class DamageTypeController {
         // List<DamageType> damageTypes= damageTypeService.getAll();
         return damageTypeService.getDamage_typesByProfile_group_id(id);
     }
+    @PostMapping("/getAllByProfileGroupAndAndDepartmentAndEquipmentIN/{profile_group_id}/{department_id}/{equipement_id}")
+    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentIN(@PathVariable("profile_group_id") Long profile_group_id,@PathVariable("department_id") Long department_id,@PathVariable("equipement_id")  Long equipement_id){
+        return damageTypeService.getAllByProfileGroupAndAndDepartmentAndEquipmentIN(profile_group_id,department_id,equipement_id);
+    }
+    @PostMapping("/getAllByProfileGroupAndAndDepartmentAndEquipmentNOT/{profile_group_id}/{department_id}/{equipement_id}")
+    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentNOT(@PathVariable("profile_group_id") Long profile_group_id,@PathVariable("department_id") Long department_id,@PathVariable("equipement_id")  Long equipement_id){
+        return damageTypeService.getAllByProfileGroupAndAndDepartmentAndEquipmentNOT(profile_group_id,department_id,equipement_id);
+    }
     @PostMapping("/delete/{id}")
     public Optional<DamageType> DeleteId(@PathVariable("id") DamageType damageType){
         return damageTypeService.DeleteId(damageType);
