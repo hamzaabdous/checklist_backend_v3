@@ -56,5 +56,10 @@ public class DamageController {
     public List<Damage> FindDamageTypeByEquipmentID(@PathVariable("id") Long idEquipment){
         return damageService.FindDamageTypeByEquipmentID(idEquipment);
     }
+    @PostMapping("/FindDamageTypeByEquipmentID/{equipement_id}/{damage_type_id}")
+    public List<Damage> FindDamageTypeByEquipmentID(@PathVariable("equipement_id") Long equipement_id,@PathVariable("damage_type_id") Long damage_type_id){
+        return damageService.FindDamageTypeByEquipmentIDandDamage_type_id(equipement_id,damage_type_id);
+    }
+
 
 }

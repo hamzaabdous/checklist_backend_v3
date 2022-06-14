@@ -5,12 +5,13 @@ import com.checklist.TA.repository.EquipmentRepository;
 import com.checklist.TA.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
-
+@Transactional
 public class EquipmentServiceUmpl implements EquipmentService {
     @Autowired
     private EquipmentRepository equipmentRepository;
@@ -29,6 +30,7 @@ public class EquipmentServiceUmpl implements EquipmentService {
 
     @Override
     public Optional<Equipment> DeleteId(Equipment equipment) {
+        System.out.println(equipment);
         equipmentRepository.deleteById(equipment.getId());
         return Optional.ofNullable(equipment);
     }

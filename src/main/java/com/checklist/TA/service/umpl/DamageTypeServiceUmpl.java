@@ -33,6 +33,7 @@ public class DamageTypeServiceUmpl implements DamageTypeService {
     }
     @Override
     public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentIN(Long profile_group_id, Long department_id, Long equipement_id) {
+
         return damageTypeRepository.getAllByProfileGroupAndAndDepartmentAndEquipmentIN(profile_group_id,department_id,equipement_id);
     }
 

@@ -1,5 +1,6 @@
 package com.checklist.TA.service.umpl;
 
+import com.checklist.TA.bo.ProfileGroup;
 import com.checklist.TA.bo.User;
 import com.checklist.TA.repository.UserRepository;
 import com.checklist.TA.service.UserService;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -27,7 +26,12 @@ public class UserServiceUmpl implements UserService {
         user.setCreatedDate(currentDate);
         return Optional.ofNullable(userRepository.save(user));
     }
+    @Override
+    public String profile_group_users(User user) {
 
+        userRepository.save(user);
+        return "ccccc";
+    }
     @Override
     public List<User> findAll() {
         return userRepository.findAll();

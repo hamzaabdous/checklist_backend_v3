@@ -59,4 +59,8 @@ public class DamageServiceUmpl implements DamageService {
     public List<Damage> FindDamageTypeByEquipmentID(Long idEquipment) {
         return damageRepository.FindDamageTypeByEquipmentID(idEquipment);
     }
+    @Override
+    public List<Damage> FindDamageTypeByEquipmentIDandDamage_type_id(Long equipement_id,Long damage_type_id) {
+        return damageRepository.FindDamageTypeByEquipmentIDandDamage_type_id(equipement_id,damage_type_id);
+    }
 }

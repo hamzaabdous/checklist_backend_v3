@@ -1,19 +1,16 @@
 package com.checklist.TA.controller;
 
+import com.checklist.TA.bo.ProfileGroup;
 import com.checklist.TA.bo.User;
 import com.checklist.TA.repository.FunctionRepository;
 import com.checklist.TA.service.JwtUserDetailsService;
 import com.checklist.TA.service.UserService;
 import com.checklist.TA.vo.ReturnredValue;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @RestController
@@ -48,6 +45,19 @@ public class UserController {
 
     }
 
+    @PostMapping("/INSERTprofile_group_users")
+    public String getDamage_typesByProfile_group_id(@RequestBody User user){
+        // List<DamageType> damageTypes= damageTypeService.getAll();
+        System.out.println("ccc");
+        ProfileGroup profileGroup = new ProfileGroup();
+        List<ProfileGroup> profileGroup2 = new ArrayList<ProfileGroup>();
+        profileGroup.setId(2L);
+
+        user.setProfileGroups(Arrays.asList(profileGroup));
+
+        userService.profile_group_users(user);
+        return "succes";
+    }
     @GetMapping("/")
     public ReturnredValue findAll(){
         List<User> users = userService.findAll();

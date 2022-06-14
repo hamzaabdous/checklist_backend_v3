@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -41,7 +42,7 @@ public class PictureServiceUmpl implements PictureService {
         //picture.setName(file.getName());
        // picture.setDescription();
 
-      //  pictureRepository.save(file);
+       // pictureRepository.save(file);
         try {
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {

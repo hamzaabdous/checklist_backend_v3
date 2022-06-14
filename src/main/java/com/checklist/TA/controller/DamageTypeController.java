@@ -2,6 +2,7 @@ package com.checklist.TA.controller;
 
 import com.checklist.TA.bo.DamageType;
 import com.checklist.TA.service.DamageTypeService;
+import com.checklist.TA.vo.damage_damagetype;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,8 @@ public class DamageTypeController {
         return damageTypeService.getDamage_typesByProfile_group_id(id);
     }
     @PostMapping("/getAllByProfileGroupAndAndDepartmentAndEquipmentIN/{profile_group_id}/{department_id}/{equipement_id}")
-    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentIN(@PathVariable("profile_group_id") Long profile_group_id,@PathVariable("department_id") Long department_id,@PathVariable("equipement_id")  Long equipement_id){
+    public List<DamageType> getAllByProfileGroupAndAndDepartmentAndEquipmentIN(@PathVariable("profile_group_id") Long profile_group_id, @PathVariable("department_id") Long department_id, @PathVariable("equipement_id")  Long equipement_id){
+
         return damageTypeService.getAllByProfileGroupAndAndDepartmentAndEquipmentIN(profile_group_id,department_id,equipement_id);
     }
     @PostMapping("/getAllByProfileGroupAndAndDepartmentAndEquipmentNOT/{profile_group_id}/{department_id}/{equipement_id}")
